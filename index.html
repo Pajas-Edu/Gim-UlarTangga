@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Gim ular tangga edukasi interaktif untuk semua mata pelajaran. Konten ditentukan guru.">
   <title>Galaxy Quest: Edu Snakes &amp; Ladders</title>
+  <script>try{if(localStorage.getItem('galaxyquest.theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
   <style>
 /* ===== Galaxy Quest: Edu Snakes & Ladders ===== */
 :root {
@@ -493,6 +494,104 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
 
 .form-grid { display: grid; gap: 12px; align-content: start; }
 
+/* tombol Pengembang: hanya ikon; mode ikon untuk menu atas dilebarkan agar tetap satu baris */
+#btnAbout span { display: none; }
+@media (min-width: 1001px) and (max-width: 1500px) {
+  .actions .btn:not(.gold) span { display: none; }
+  .actions .btn { padding: 3px 9px; }
+}
+
+/* ==========================================================================
+   SAKLAR TEMA (gelap / terang)
+   ========================================================================== */
+.theme-switch { flex: none; border: 1px solid var(--panel-border); background: rgba(255, 255, 255, .08); border-radius: 999px; padding: 3px; cursor: pointer; display: inline-flex; align-items: center; min-height: 32px; touch-action: manipulation; }
+.ts-track { position: relative; display: block; width: 58px; height: 24px; border-radius: 999px; background: linear-gradient(135deg, #1e2a78, #4c1d95); transition: background .25s; }
+.ts-ico { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; line-height: 1; }
+.ts-ico.moon { left: 7px; }
+.ts-ico.sun { right: 7px; }
+.ts-thumb { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .5); transition: transform .25s ease; }
+.theme-switch[aria-checked="true"] .ts-thumb { transform: translateX(34px); }
+.theme-switch[aria-checked="true"] .ts-track { background: linear-gradient(135deg, #7dd3fc, #fde68a); }
+.theme-switch:hover { filter: brightness(1.1); }
+
+/* ==========================================================================
+   MODE TERANG
+   ========================================================================== */
+html[data-theme="light"] {
+  --bg1: #eaf2ff; --bg2: #f4ecff;
+  --panel: rgba(255, 255, 255, .92);
+  --panel-border: rgba(61, 82, 190, .26);
+  --text: #1a1f4d; --muted: #566094;
+  --t0: #0891b2; --t1: #d97706;
+  --ok: #15803d; --bad: #e11d48;
+  --shadow: 0 8px 22px rgba(40, 55, 140, .16);
+  color-scheme: light;
+}
+html[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse at 15% 0%, #d4e3ff 0%, transparent 55%),
+    radial-gradient(ellipse at 95% 100%, #eadcff 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg1), var(--bg2));
+  background-attachment: fixed;
+}
+html[data-theme="light"] .planet { opacity: .28; }
+html[data-theme="light"] .float { opacity: .3; }
+html[data-theme="light"] .topbar { background: rgba(255, 255, 255, .82); }
+html[data-theme="light"] .brand h1 { background: linear-gradient(90deg, #0e7490, #6d28d9 55%, #b45309); -webkit-background-clip: text; background-clip: text; color: transparent; }
+html[data-theme="light"] .logo { filter: drop-shadow(0 0 6px rgba(109, 40, 217, .35)); }
+html[data-theme="light"] .card-title { color: #1a1f4d; }
+html[data-theme="light"] .btn.ghost,
+html[data-theme="light"] .btn.tiny,
+html[data-theme="light"] .theme-switch { background: rgba(61, 82, 190, .09); }
+html[data-theme="light"] .btn.danger,
+html[data-theme="light"] .btn.tiny.danger { background: rgba(225, 29, 72, .1); border-color: rgba(225, 29, 72, .5); color: #9f1239; }
+html[data-theme="light"] .team-icon { background: rgba(61, 82, 190, .09); }
+html[data-theme="light"] .team-stats > div { background: rgba(61, 82, 190, .07); }
+html[data-theme="light"] .last-dice strong { color: #b45309; }
+html[data-theme="light"] .die { border: 1px solid rgba(61, 82, 190, .3); }
+html[data-theme="light"] .status { background: rgba(8, 145, 178, .1); border-color: rgba(8, 145, 178, .4); }
+html[data-theme="light"] .board { background: #dfe8ff; border-color: #6f86ff; box-shadow: 0 0 0 3px rgba(245, 158, 11, .7), 0 14px 30px rgba(40, 55, 140, .3); }
+html[data-theme="light"] .cell { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55); }
+html[data-theme="light"] .cell.c0 { background: linear-gradient(135deg, #a9c4ff, #86a9f7); }
+html[data-theme="light"] .cell.c1 { background: linear-gradient(135deg, #d3bfff, #b89cf5); }
+html[data-theme="light"] .cell.start { background: linear-gradient(135deg, #5eead4, #2dd4bf); }
+html[data-theme="light"] .cell.finish { background: linear-gradient(135deg, #fcd34d, #f59e0b); }
+html[data-theme="light"] .cell .num { background: rgba(26, 31, 77, .78); }
+html[data-theme="light"] .cell .tag { color: #3b2300; text-shadow: none; }
+html[data-theme="light"] .cell.start .tag { color: #064e3b; }
+html[data-theme="light"] .board-overlay { background: rgba(255, 255, 255, .78); }
+html[data-theme="light"] .toast { background: #fff; color: var(--text); }
+html[data-theme="light"] .dlg { background: #fff; }
+html[data-theme="light"] .dlg::backdrop { background: rgba(26, 31, 77, .5); }
+html[data-theme="light"] .badge { background: rgba(8, 145, 178, .12); border-color: rgba(8, 145, 178, .5); }
+html[data-theme="light"] .opt { background: rgba(61, 82, 190, .06); }
+html[data-theme="light"] .opt:hover:not(:disabled) { background: rgba(61, 82, 190, .13); }
+html[data-theme="light"] .opt .lt { background: rgba(61, 82, 190, .15); }
+html[data-theme="light"] .opt[aria-pressed="true"] { background: rgba(8, 145, 178, .16); }
+html[data-theme="light"] .opt.right { background: rgba(34, 197, 94, .2); }
+html[data-theme="light"] .opt.wrong { background: rgba(244, 63, 94, .16); }
+html[data-theme="light"] .field input,
+html[data-theme="light"] .field select,
+html[data-theme="light"] .field textarea { background: #f3f6ff; }
+html[data-theme="light"] .error { color: #be123c; }
+html[data-theme="light"] .dirty { color: #b45309; }
+html[data-theme="light"] .qitem { background: rgba(61, 82, 190, .05); }
+html[data-theme="light"] .tab[aria-selected="true"] { color: #b45309; border-bottom-color: #d97706; }
+html[data-theme="light"] .editor legend { color: #b45309; }
+html[data-theme="light"] .extra-rules { background: rgba(245, 158, 11, .14); }
+@keyframes flashL { 0%, 55% { background: rgba(34, 197, 94, .25); border-color: var(--ok); } 100% { background: rgba(61, 82, 190, .05); } }
+html[data-theme="light"] .qitem.flash { animation-name: flashL; }
+@media (max-width: 1000px) { html[data-theme="light"] .order-dice { background: rgba(255, 255, 255, .97); } }
+
+/* ---- kuis dinonaktifkan ---- */
+body.no-quiz .team-stats { grid-template-columns: 1fr; }
+body.no-quiz .team-stats > div:nth-child(n+2) { display: none; }
+.quiz-toggle { padding: 10px 12px; border: 1px solid var(--panel-border); border-radius: 12px; background: rgba(255, 255, 255, .05); align-items: flex-start; }
+.quiz-toggle small { color: var(--muted); font-weight: 400; }
+.quiz-opts { display: grid; gap: 12px; }
+.quiz-opts.off { opacity: .45; }
+html[data-theme="light"] .quiz-toggle { background: rgba(61, 82, 190, .05); }
+
 </style>
 </head>
 <body>
@@ -524,10 +623,14 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       </div>
     </div>
     <nav class="actions" aria-label="Menu utama">
+      <button id="btnAbout" class="btn ghost" type="button" aria-label="Tentang pengembang">👤 <span>Pengembang</span></button>
       <button id="btnInfo" class="btn ghost" type="button" aria-label="Lihat materi dan tujuan pembelajaran">📚 <span>Materi</span></button>
       <button id="btnRecap" class="btn ghost" type="button" aria-label="Lihat rekap permainan">📊 <span>Rekap</span></button>
       <button id="btnHelp" class="btn ghost" type="button" aria-label="Tampilkan petunjuk permainan">❓ <span>Petunjuk</span></button>
       <button id="btnSound" class="btn ghost" type="button" aria-pressed="true" aria-label="Suara aktif. Klik untuk menonaktifkan">🔊 <span>Suara</span></button>
+      <button id="btnTheme" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Mode terang">
+        <span class="ts-track" aria-hidden="true"><span class="ts-ico moon">🌙</span><span class="ts-ico sun">☀️</span><span class="ts-thumb"></span></span>
+      </button>
       <button id="btnPause" class="btn ghost" type="button" aria-label="Jeda permainan">⏸ <span>Jeda</span></button>
       <button id="btnFull" class="btn ghost" type="button" aria-label="Layar penuh">⛶ <span>Layar Penuh</span></button>
       <button id="btnRestart" class="btn ghost" type="button" aria-label="Mulai ulang permainan">🔄 <span>Mulai Ulang</span></button>
@@ -677,6 +780,8 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       </div>
 
       <div class="pane" id="pane-opsi" role="tabpanel" aria-labelledby="tab-opsi" hidden>
+        <label class="check quiz-toggle"><input type="checkbox" id="sQuiz"> <span><b>Aktifkan kuis soal</b><br><small>Jika dimatikan, dadu langsung menggerakkan pion tanpa pertanyaan (bank soal tidak diperlukan).</small></span></label>
+        <div id="quizOpts" class="quiz-opts">
         <div class="field"><label for="sDifficulty">Tingkat kesulitan soal yang dipakai</label>
           <select id="sDifficulty">
             <option value="all">Semua tingkat</option>
@@ -686,8 +791,9 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
           </select></div>
         <label class="check"><input type="checkbox" id="sShuffleQ"> Acak urutan soal</label>
         <label class="check"><input type="checkbox" id="sShuffleO"> Acak pilihan jawaban (kunci tetap benar)</label>
+        </div>
         <label class="check"><input type="checkbox" id="sSound"> Aktifkan suara</label>
-        <p class="hint">Soal tidak diulang sebelum seluruh soal pada tingkat yang dipilih habis terpakai.</p>
+        <p class="hint" id="quizHint">Soal tidak diulang sebelum seluruh soal pada tingkat yang dipilih habis terpakai.</p>
         <hr>
         <button id="btnResetAll" class="btn danger" type="button">Kembalikan semua pengaturan ke contoh awal</button>
       </div>
@@ -1043,7 +1149,7 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     rules: '',
     team1: 'Tim Roket', icon1: '🚀',
     team2: 'Tim Planet', icon2: '🪐',
-    difficulty: 'all', shuffleQuestions: true, shuffleOptions: true, sound: true
+    difficulty: 'all', quizEnabled: true, shuffleQuestions: true, shuffleOptions: true, sound: true
   };
 
   const Logic = {
@@ -1090,6 +1196,7 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       const out = Object.assign({}, DEFAULT_CONFIG, pick(d, Object.keys(DEFAULT_CONFIG)));
       out.questions = Array.isArray(d.questions) ? d.questions.map((q) => sanitizeQuestion(q)).filter((r) => r.ok).map((r) => r.question) : [];
       if (!['all', 'easy', 'medium', 'hard'].includes(out.difficulty)) out.difficulty = 'all';
+      out.quizEnabled = out.quizEnabled !== false;
       return out;
     } catch (e) {
       storageOK = false;
@@ -1329,6 +1436,7 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
 
   /* ---------- Render ---------- */
   function renderTeams() {
+    document.body.classList.toggle('no-quiz', !cfg.quizEnabled);
     [0, 1].forEach((t) => {
       $('#teamName' + t).textContent = teamName(t);
       $('#teamIcon' + t).textContent = teamIcon(t);
@@ -1462,12 +1570,12 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     if (game.phase !== 'idle' || game.paused || game.winner !== null) return;
     const t = game.turn;
 
-    if (!cfg.questions.length) {
-      toast('Bank soal masih kosong. Tambahkan soal di Pengaturan Guru.');
+    if (cfg.quizEnabled && !cfg.questions.length) {
+      toast('Bank soal masih kosong. Tambahkan soal di Pengaturan Guru, atau nonaktifkan kuis di tab Opsi Gim.');
       setStatus('Bank soal kosong. Buka Pengaturan Guru → Bank Soal.');
       openSettings('bank'); return;
     }
-    if (!poolQuestions().length) {
+    if (cfg.quizEnabled && !poolQuestions().length) {
       toast('Tidak ada soal pada tingkat kesulitan yang dipilih.');
       setStatus('Tidak ada soal untuk tingkat kesulitan ini. Ubah di Opsi Gim atau tambah soal.');
       openSettings('opsi'); return;
@@ -1479,23 +1587,30 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     game.lastDice = dice; game.stats[t].rolls++;
     $('#lastDice').textContent = dice;
 
-    const q = nextQuestion();
-    game.phase = 'question'; renderControls();
-    setStatus(`${teamName(t)} mendapat angka ${dice}. Jawab soal untuk maju!`);
-    const correct = await askQuestion(t, q, dice);
+    const quiz = cfg.quizEnabled;
+    let correct = true;                       // tanpa kuis: dadu langsung menggerakkan pion
+    if (quiz) {
+      const q = nextQuestion();
+      game.phase = 'question'; renderControls();
+      setStatus(`${teamName(t)} mendapat angka ${dice}. Jawab soal untuk maju!`);
+      correct = await askQuestion(t, q, dice);
+    } else {
+      setStatus(`${teamName(t)} mendapat angka ${dice}.`);
+      await sleep(reduceMotion ? 80 : 450);
+    }
 
     game.phase = 'moving'; renderControls();
     if (correct) {
-      game.stats[t].correct++;
+      if (quiz) game.stats[t].correct++;
       const res = resolveMove(game.pos[t], dice);
       if (!res.moved) {
-        addLog(t, `${teamName(t)}: benar, tetapi ${game.pos[t]} + ${dice} melebihi 100 → tetap di kotak ${game.pos[t]}.`);
+        addLog(t, `${teamName(t)}: ${quiz ? 'benar, tetapi ' : ''}${game.pos[t]} + ${dice} melebihi 100 → tetap di kotak ${game.pos[t]}.`);
         setStatus(`Angka dadu melebihi kotak 100. ${teamName(t)} tetap di kotak ${game.pos[t]}.`);
         showBanner('Harus pas di kotak 100!', '');
       } else {
         setStatus(`${teamName(t)} melangkah ${dice} kotak…`);
         await walk(t, dice);
-        addLog(t, `${teamName(t)}: benar, maju ${dice} → kotak ${res.landed}.`);
+        addLog(t, `${teamName(t)}: ${quiz ? 'benar, ' : ''}maju ${dice} → kotak ${res.landed}.`);
         if (res.jump) {
           await doJump(t, res);
         }
@@ -1548,7 +1663,7 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     const choice = await choose(
       `🏆 ${teamIcon(t)} ${teamName(t)} Menang!`,
       `Selamat! ${teamName(t)} lebih dulu mencapai kotak 100.\n` +
-      `Jawaban benar: ${stat.correct}, salah: ${stat.wrong}.\n` +
+      (cfg.quizEnabled ? `Jawaban benar: ${stat.correct}, salah: ${stat.wrong}.\n` : '') +
       `Terima kasih kepada kedua kelompok yang sudah bermain dan berpikir bersama. Hebat semuanya!`,
       [
         { label: 'Kembali ke Papan', value: 'board' },
@@ -1581,12 +1696,13 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       const s = game.stats[t];
       const total = s.correct + s.wrong;
       const pct = total ? Math.round((s.correct / total) * 100) : 0;
-      return `<tr><td>${esc(teamIcon(t))} ${esc(teamName(t))}${game.winner === t ? ' 🏆' : ''}</td><td>${game.pos[t]}</td><td>${s.correct}</td><td>${s.wrong}</td><td>${pct}%</td><td>${s.ladders}</td><td>${s.snakes}</td></tr>`;
+      const qcols = cfg.quizEnabled ? `<td>${s.correct}</td><td>${s.wrong}</td><td>${pct}%</td>` : '';
+      return `<tr><td>${esc(teamIcon(t))} ${esc(teamName(t))}${game.winner === t ? ' 🏆' : ''}</td><td>${game.pos[t]}</td>${qcols}<td>${s.ladders}</td><td>${s.snakes}</td></tr>`;
     }).join('');
     const log = game.log.length ? game.log.map((e) => `<li>${esc(e.text)}</li>`).join('') : '<li>Belum ada pergerakan.</li>';
     $('#recapBody').innerHTML =
-      `<p class="hint" style="margin-bottom:10px">${esc(cfg.subject)} – ${esc(cfg.topic)}. Posisi pion (kotak) berbeda dari skor akademik (jawaban benar/salah).</p>` +
-      `<table class="recap-table"><thead><tr><th>Kelompok</th><th>Posisi</th><th>Benar</th><th>Salah</th><th>Akurasi</th><th>Tangga</th><th>Ular</th></tr></thead><tbody>${rows}</tbody></table>` +
+      `<p class="hint" style="margin-bottom:10px">${esc(cfg.subject)} – ${esc(cfg.topic)}. ` + (cfg.quizEnabled ? 'Posisi pion (kotak) berbeda dari skor akademik (jawaban benar/salah).' : 'Mode tanpa kuis: hanya posisi pion yang dicatat.') + `</p>` +
+      `<table class="recap-table"><thead><tr><th>Kelompok</th><th>Posisi</th>` + (cfg.quizEnabled ? '<th>Benar</th><th>Salah</th><th>Akurasi</th>' : '') + `<th>Tangga</th><th>Ular</th></tr></thead><tbody>${rows}</tbody></table>` +
       `<h3 style="margin-bottom:6px">Riwayat lengkap</h3><ol class="recap-log">${log}</ol>`;
     $('#dlgRecap').showModal();
   }
@@ -1617,6 +1733,27 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       [{ label: 'Tutup', value: true, cls: 'primary' }]);
   }
 
+  function showAbout() {
+    choose('👤 Tentang Aplikasi', 'Pengembang : Jasrin Nupura', [{ label: 'Tutup', value: true, cls: 'primary' }]);
+  }
+
+  /* ---------- Tema gelap / terang ---------- */
+  const THEME_KEY = 'galaxyquest.theme';
+  function currentTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+  function applyTheme(mode) {
+    if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+    const sw = $('#btnTheme');
+    sw.setAttribute('aria-checked', String(mode === 'light'));
+    sw.setAttribute('aria-label', mode === 'light' ? 'Mode terang aktif. Klik untuk mode gelap' : 'Mode gelap aktif. Klik untuk mode terang');
+    sw.title = mode === 'light' ? 'Mode terang (klik untuk gelap)' : 'Mode gelap (klik untuk terang)';
+  }
+  function toggleTheme() {
+    const next = currentTheme() === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* tema tetap berubah, hanya tidak diingat */ }
+  }
+
   function toggleFullscreen() {
     const d = document;
     if (d.fullscreenElement) d.exitFullscreen();
@@ -1628,8 +1765,11 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     choose('❓ Petunjuk Permainan',
       '1. Kedua kelompok mulai dari kotak 1 dan bermain bergiliran.\n' +
       '2. Kelompok yang mendapat giliran menekan "Lempar Dadu" (angka 1–6).\n' +
-      '3. Diskusikan soal, pilih jawaban, lalu tekan "Kunci Jawaban".\n' +
-      '4. Jawaban benar: pion maju sesuai angka dadu. Salah: pion diam, giliran berpindah.\n' +
+      (cfg.quizEnabled
+        ? '3. Diskusikan soal, pilih jawaban, lalu tekan "Kunci Jawaban".\n' +
+          '4. Jawaban benar: pion maju sesuai angka dadu. Salah: pion diam, giliran berpindah.\n'
+        : '3. Pion langsung maju sesuai angka dadu (kuis soal sedang dinonaktifkan guru).\n' +
+          '4. Setelah pion bergerak, giliran berpindah ke kelompok lain.\n') +
       '5. Berhenti tepat di pangkal tangga → naik. Berhenti tepat di kepala ular → turun ke ekor.\n' +
       '6. Harus tepat di kotak 100. Jika dadu melebihi 100, pion tidak bergerak.' +
       (cfg.rules ? '\n\nAturan tambahan guru:\n' + cfg.rules : ''),
@@ -1662,10 +1802,10 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     $('#sTeam1').value = cfg.team1; $('#sTeam2').value = cfg.team2;
     ensureIcon($('#sIcon1'), cfg.icon1); ensureIcon($('#sIcon2'), cfg.icon2);
     $('#sDifficulty').value = cfg.difficulty;
-    $('#sShuffleQ').checked = cfg.shuffleQuestions; $('#sShuffleO').checked = cfg.shuffleOptions; $('#sSound').checked = cfg.sound;
+    $('#sQuiz').checked = cfg.quizEnabled; $('#sShuffleQ').checked = cfg.shuffleQuestions; $('#sShuffleO').checked = cfg.shuffleOptions; $('#sSound').checked = cfg.sound;
     $('#setError').hidden = true;
     resetEditor(); renderQuestionList();
-    settingsBase = settingsSnapshot(); updateDirty();
+    settingsBase = settingsSnapshot(); updateDirty(); syncQuizUI();
     setTab(tab || 'materi');
     if (!dlg.open) dlg.showModal();
   }
@@ -1675,10 +1815,11 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
   }
 
   const SETTING_FIELDS = ['#sGameName', '#sLevel', '#sGrade', '#sSubject', '#sTopic', '#sObjective', '#sRules', '#sTeam1', '#sTeam2', '#sIcon1', '#sIcon2', '#sDifficulty'];
-  const SETTING_CHECKS = ['#sShuffleQ', '#sShuffleO', '#sSound'];
+  const SETTING_CHECKS = ['#sQuiz', '#sShuffleQ', '#sShuffleO', '#sSound'];
   let settingsBase = '';
   const settingsSnapshot = () => JSON.stringify([SETTING_FIELDS.map((s) => $(s).value), SETTING_CHECKS.map((s) => $(s).checked)]);
-  function updateDirty() { $('#setDirty').hidden = settingsSnapshot() === settingsBase; }
+  function syncQuizUI() { const on = $('#sQuiz').checked; $('#quizOpts').classList.toggle('off', !on); $('#quizHint').style.opacity = on ? '' : '.45'; $$('#quizOpts select, #quizOpts input').forEach((el) => { el.disabled = !on; }); }
+  function updateDirty() { syncQuizUI(); $('#setDirty').hidden = settingsSnapshot() === settingsBase; }
 
   async function requestCloseSettings() {
     if (settingsSnapshot() === settingsBase) { $('#dlgSettings').close(); return; }
@@ -1697,7 +1838,7 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
       subject: v('#sSubject'), topic: v('#sTopic'), objective: v('#sObjective'), rules: v('#sRules'),
       team1: v('#sTeam1'), icon1: $('#sIcon1').value, team2: v('#sTeam2'), icon2: $('#sIcon2').value,
       difficulty: $('#sDifficulty').value,
-      shuffleQuestions: $('#sShuffleQ').checked, shuffleOptions: $('#sShuffleO').checked, sound: $('#sSound').checked
+      quizEnabled: $('#sQuiz').checked, shuffleQuestions: $('#sShuffleQ').checked, shuffleOptions: $('#sShuffleO').checked, sound: $('#sSound').checked
     };
     if (!next.gameName) { setTab('materi'); $('#sGameName').focus(); return showSetError('Nama permainan wajib diisi.'); }
     if (!next.subject) { setTab('materi'); $('#sSubject').focus(); return showSetError('Mata pelajaran wajib diisi.'); }
@@ -1883,6 +2024,9 @@ hr { border: 0; border-top: 1px solid var(--panel-border); width: 100%; }
     $('#btnRestart').addEventListener('click', restart);
     $('#btnHelp').addEventListener('click', showHelp);
     $('#btnInfo').addEventListener('click', showInfo);
+    $('#btnAbout').addEventListener('click', showAbout);
+    $('#btnTheme').addEventListener('click', toggleTheme);
+    applyTheme(currentTheme());
     $('#btnFull').addEventListener('click', toggleFullscreen);
     if (window.ResizeObserver) new ResizeObserver(updateAspect).observe($('#board')); else window.addEventListener('resize', updateAspect);
     $('#btnRecap').addEventListener('click', showRecap);
